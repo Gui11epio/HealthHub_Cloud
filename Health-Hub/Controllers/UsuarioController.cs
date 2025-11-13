@@ -12,7 +12,8 @@ namespace Health_Hub.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/usuarios")]
+    [Route("api/v1/[controller]")]
+    [SwaggerTag("Controlador para gerenciar usuários")]
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _svc;

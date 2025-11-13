@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Sprint1_C_.Application.DTOs.Response;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Health_Hub.Controllers
+namespace Health_Hub.Controllers.v2
 {
     [ApiController]
     [ApiVersion("2.0")]
-    [Route("api/v{version:apiVersion}/usuarios")]
+    [Route("api/v2/[controller]")]
+    [SwaggerTag("Controlador para gerenciar usuários - Versão 2")]
     public class UsuarioControllerV2 : ControllerBase
     {
         private readonly UsuarioService _svc;
@@ -39,21 +40,7 @@ namespace Health_Hub.Controllers
             return Ok(usuario);
         }
 
-        [HttpGet("email/{email}")]
-        [ProducesResponseType(typeof(UsuarioResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(
-            Summary = "Obtém um usuário por email",
-            Description = "Retorna os detalhes de um usuário específico pelo email."
-        )]
-        public async Task<IActionResult> GetByEmail(string email)
-        {
-            var usuario = await _svc.GetByEmailAsync(email);
-            if (usuario == null) return NotFound();
-            return Ok(usuario);
-        }
-
+        
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<UsuarioResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -68,20 +55,7 @@ namespace Health_Hub.Controllers
             return Ok(usuarios);
         }
 
-        [HttpGet("pagina")]
-        [ProducesResponseType(typeof(PagedResult<UsuarioResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [SwaggerOperation(
-            Summary = "Obtém usuários paginados",
-            Description = "Retorna uma lista paginada de usuários."
-        )]
-        public async Task<ActionResult<PagedResult<UsuarioResponse>>> GetPaged(int numeroPag = 1, int tamanhoPag = 10)
-        {
-            var result = await _svc.ObterPorPagina(numeroPag, tamanhoPag);
-            return Ok(result);
-        }
-
-
+        
         [HttpPost]
         [ProducesResponseType(typeof(UsuarioResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

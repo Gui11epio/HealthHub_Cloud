@@ -9,7 +9,7 @@ namespace Health_Hub.Application.DTOs.Request
 {
     public class QuestionarioRequest
     {
-        [Required(ErrorMessage = "O Id do usário é obrigatório")]
+        [Required(ErrorMessage = "O Id do usuário é obrigatório")]
         public int UsuarioId { get; set; }
 
         [Required(ErrorMessage = "O nível de estresse é obrigatório")]

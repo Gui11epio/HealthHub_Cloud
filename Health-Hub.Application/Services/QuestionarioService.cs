@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Health_Hub.Application.DTOs.Request;
 using Health_Hub.Application.DTOs.Response;
 using Health_Hub.Domain.Entities;
 using Health_Hub.Domain.Interfaces;
@@ -46,16 +47,44 @@ namespace Health_Hub.Application.Services
             };
         }
 
-        public async Task<QuestionarioResponse> Criar(QuestionarioResponse request)
+        public async Task<QuestionarioResponse> Criar(QuestionarioRequest request)
         {
             var novoQuestionario = _mapper.Map<Questionario>(request);
+
+            // gerar avaliação automática
+            novoQuestionario.Avaliacao = GerarAvaliacao(novoQuestionario);
+
             await _repo.AddAsync(novoQuestionario);
+
             return _mapper.Map<QuestionarioResponse>(novoQuestionario);
         }
+
 
         public async Task<bool> Deletar(int id)
         {
             return await _repo.DeleteAsync(id);
+        }
+
+        // Função para análise de saúde mental no trabalho
+        private string GerarAvaliacao(Questionario questionario)
+        {
+            int pontosRuins = 0;
+
+            if (questionario.NivelEstresse >= 7) pontosRuins++;
+            if (questionario.Ansiedade >= 7) pontosRuins++;
+            if (questionario.Sobrecarga >= 7) pontosRuins++;
+            if (questionario.QualidadeSono <= 3) pontosRuins++;
+
+            if (pontosRuins == 0)
+                return "Seu bem-estar mental aparenta estar estável. Continue mantendo bons hábitos.";
+
+            if (pontosRuins == 1)
+                return "Alguns sinais de alerta foram identificados. Recomendamos atenção ao equilíbrio entre vida pessoal e trabalho.";
+
+            if (pontosRuins <= 3)
+                return "Níveis elevados de estresse, ansiedade ou sobrecarga encontrados. Considere buscar apoio e conversar com um profissional.";
+
+            return "Alto risco de burnout! Procure ajuda imediatamente e converse com a equipe de saúde ocupacional.";
         }
 
     }

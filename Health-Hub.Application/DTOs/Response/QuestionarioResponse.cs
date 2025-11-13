@@ -20,6 +20,7 @@ namespace Health_Hub.Application.DTOs.Response
         public int Ansiedade { get; set; }
 
         public int Sobrecarga { get; set; }
+        public string Avaliacao { get; set; }
     }
 
 }
