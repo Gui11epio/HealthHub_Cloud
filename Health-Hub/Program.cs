@@ -1,5 +1,4 @@
-﻿
-using Health_Hub.Application.Mapping;
+﻿using Health_Hub.Application.Mapping;
 using Health_Hub.Application.Services;
 using Health_Hub.Domain.IRepositories;
 using System.Text.Json.Serialization;
