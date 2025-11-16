@@ -14,10 +14,10 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DEFAULT_CONNECTION": "User Id=xxxxxx;Password=xxxxxxxx;Data Source=oracle.fiap.com.br/ORCL"
-      },
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "DEFAULT_CONNECTION": "Server=tcp:health-sql-server.database.windows.net,1433;Initial Catalog=healthdb;Persist Security Info=False;User ID=healthadmin;Password=HealthHub020306!;MultipleActiveResultSets=False;Encrypt=True;"
+        },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7165;http://localhost:5211"
     },

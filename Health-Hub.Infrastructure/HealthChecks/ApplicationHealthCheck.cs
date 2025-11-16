@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 
-namespace MottuFind_C_.Infrastructure.HealthChecks;
+namespace Health_Hub.Infrastructure.HealthChecks;
 
 public class ApplicationHealthCheck : IHealthCheck
 {

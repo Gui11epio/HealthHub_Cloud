@@ -30,8 +30,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-    <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.23.26000" />
-    <PackageReference Include="Serilog" Version="4.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="9.0.6" />
   </ItemGroup>
@@ -40,6 +38,10 @@
     <ProjectReference Include="..\Health-Hub.Application\Health-Hub.Application.csproj" />
     <ProjectReference Include="..\Health-Hub.Domain\Health-Hub.Domain.csproj" />
     <ProjectReference Include="..\Health-Hub.Infrastructure\Health-Hub.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

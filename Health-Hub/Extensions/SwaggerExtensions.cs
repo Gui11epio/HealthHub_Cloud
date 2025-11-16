@@ -1,4 +1,4 @@
-﻿using MottuFind_C_.Application.Config;
+﻿using Health_Hub.Application.Config;
 using Microsoft.OpenApi.Models;
 
 namespace Health_Hub.Extensions

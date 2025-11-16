@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 
-namespace MottuFind_C_.Application.Config
+namespace Health_Hub.Application.Config
 {
     public class SwaggerSettings
     {

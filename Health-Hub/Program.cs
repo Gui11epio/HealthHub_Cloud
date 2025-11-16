@@ -8,7 +8,7 @@ using Health_Hub.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using MottuFind_C_.Infrastructure.HealthChecks;
+using Health_Hub.Infrastructure.HealthChecks;
 using Asp.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Health_Hub.Domain.Interfaces;
@@ -34,13 +34,7 @@ namespace Health_Hub
                     Description = "Documentação da versão 1 da API."
                 });
 
-                c.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
-                {
-                    Title = "Health-Hub.API",
-                    Version = "v2",
-                    Description = "Documentação da versão 2 da API."
-                });
-
+                
                 c.EnableAnnotations();
 
 
@@ -49,13 +43,24 @@ namespace Health_Hub
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                var connectionString = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
+                
+                var connectionString = Environment.GetEnvironmentVariable("CUSTOMCONNSTR_DEFAULT_CONNECTION");
+
+                
                 if (string.IsNullOrWhiteSpace(connectionString))
-                    throw new Exception("A variável de ambiente DEFAULT_CONNECTION não está definida.");
+                    connectionString = Environment.GetEnvironmentVariable("DEFAULT_CONNECTION");
 
-                options.UseOracle(connectionString);
+                
+                if (string.IsNullOrWhiteSpace(connectionString))
+                    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+                
+                if (string.IsNullOrWhiteSpace(connectionString))
+                    throw new Exception("❌ Nenhuma connection string foi encontrada. Verifique as variáveis de ambiente ou o appsettings.json.");
+
+                
+                options.UseSqlServer(connectionString);
             });
-
 
             builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             builder.Services.AddScoped<UsuarioService>();
@@ -92,12 +97,8 @@ namespace Health_Hub
                     "Application",
                     failureStatus: HealthStatus.Degraded,
                     tags: new[] { "application", "internal" }
-                )
-                .AddCheck<OracleHealthCheck>(
-                    "Oracle Database",
-                    failureStatus: HealthStatus.Unhealthy,
-                    tags: new[] { "database" }
                 );
+                
 
             var app = builder.Build();
 
@@ -108,7 +109,6 @@ namespace Health_Hub
                 app.UseSwaggerUI(ui =>
                 {
                     ui.SwaggerEndpoint("/swagger/v1/swagger.json", "Health-Hub.API v1");
-                    ui.SwaggerEndpoint("/swagger/v2/swagger.json", "Health-Hub.API v2");
                 });
             }
 
@@ -125,17 +125,10 @@ namespace Health_Hub
             {
                 ResponseWriter = HealthCheckExtensions.WriteResponse,
                 Predicate = check => check.Tags.Contains("application") ||
-                                     check.Tags.Contains("database") ||
                                      check.Tags.Contains("external")
             });
 
-            app.MapHealthChecks("/health/ready", new HealthCheckOptions()
-            {
-                ResponseWriter = HealthCheckExtensions.WriteResponse,
-                Predicate = check => check.Tags.Contains("database") ||
-                                     check.Tags.Contains("external")
-            });
-
+            
             app.MapHealthChecks("/health/live", new HealthCheckOptions()
             {
                 ResponseWriter = HealthCheckExtensions.WriteResponse,
