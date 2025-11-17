@@ -17,11 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6916805C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Health-Hub.Tests", "Health-Hub.Tests\Health-Hub.Tests.csproj", "{9E7CEE09-6C5B-4808-B523-F776AF0F4E5E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{3B2A0D2E-BD12-4B5C-ADCE-9E5A9342105F}"
-	ProjectSection(SolutionItems) = preProject
-		deploy.sh = deploy.sh
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
