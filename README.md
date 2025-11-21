@@ -96,9 +96,9 @@ Obtém usuários paginados
    ```bash
    git clone https://github.com/Gui11epio/HealthHub_Cloud.git
    ````
-3. **Entre na raiz do projeto**
+3. **Entre na pasta de scripts**
    ```bash
-   cd HealthHub_Cloud/
+   cd .\HealthHub_Cloud\Health-Hub\scripts\
    ```
 4. **Rode o arquivo script_infra.sh, localizado dentro da pasta /scripts em Health-Hub**
 
