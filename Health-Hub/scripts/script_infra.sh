@@ -94,10 +94,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 echo "🏗️ Executando migrations usando o banco Azure SQL..."
 
-dotnet ef database update \
-  --project ../../Health-Hub.Infrastructure/Health-Hub.Infrastructure.csproj \
-  --context AppDbContext \
-  --connection "$CONNECTION_STRING"
+dotnet ef database update --project ../../Health-Hub.Infrastructure/Health-Hub.Infrastructure.csproj 
 
 
 # --- Finalização ---
