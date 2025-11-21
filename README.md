@@ -111,10 +111,78 @@ Obtém usuários paginados
 
 
 
-## 📬JSON de Teste para o Swagger
+## 📬JSON de Teste para o Postman
 
-- Questionário
+🔵 1. Testar USUÁRIO no Postman
+
+- 📍 1.1 – Criar usuário
   
+### POST
+````bash
+healthhub-app.azurewebsites.net/api/v1/Usuario
+````
+```bash  
+{
+    "emailCorporativo": "guilherme@gmail.com",
+    "nome": "Guilherme",
+    "senha": "GuiTatu0203!",
+    "tipo": "ADMIN"
+}
+````
+🔤 Tipo deve conter:
+Tipo: "ADMIN" ou "FUNCIONARIO"
+
+- 📍 1.2 – Buscar todos usuários
+
+### GET
+```bash
+healthhub-app.azurewebsites.net/api/v1/Usuario
+```
+
+- 📍 1.3 – Buscar usuário por ID
+
+### GET
+```bash
+healthhub-app.azurewebsites.net/api/v1/Usuario/1
+```
+
+- 📍 1.4 – Buscar usuário por email
+
+### GET
+```bash
+healthhub-app.azurewebsites.net/api/v1/Usuario/email/guilherme@gmail.com
+````
+
+- 📍 1.5 – Atualizar usuário
+
+### PUT
+```bash
+https://healthhub-app.azurewebsites.net/api/v1/Usuario/1
+```
+```bash
+{
+  "emailCorporativo": "guilherme@gmail.com",
+  "nome": "Guilherme Jesus",
+  "senha": "NovaSenha123!",
+  "tipo": "ADMIN"
+}
+```
+
+- 📍 1.6 – Deletar usuário
+
+### DELETE
+```bash
+healthhub-app.azurewebsites.net/api/v1/Usuario/1
+```
+
+🟢 2. Testar QUESTIONÁRIO no Postman
+
+- 📍 2.1 – Criar questionário
+
+### POST
+````bash
+healthhub-app.azurewebsites.net/api/v1/Questionario
+````
 ```bash
 {
   "usuarioId": 1,
@@ -125,22 +193,33 @@ Obtém usuários paginados
 }
 ```
 
-#
+- 📍 2.2 – Buscar todos
 
-- Usuário
+### GET
 ```bash
-{
-  
-  "emailCorporativo": "guilherme@gmail.com",
-  "nome": "Guilherme",
-  "senha": "GuiTatu0203!",
-  "tipo": "ADMIN"
+healthhub-app.azurewebsites.net/api/v1/Questionario
+````
 
-}
+- 📍 2.3 – Buscar por ID
+
+### GET
+```bash
+https://healthhub-app.azurewebsites.net/api/v1/Questionario/1
 ```
-🔤 Tipo deve conter:
 
-- Tipo: "ADMIN" ou "FUNCIONARIO"
+- 📍 2.4 – Paginação
+
+GET
+```bash
+healthhub-app.azurewebsites.net/api/v1/Questionario/pagina?pagina=0&tamanho=10
+````
+
+- 📍 2.5 – Deletar questionário
+
+### DELETE
+```bash
+https://healthhub-app.azurewebsites.net/api/v1/Questionario/1
+```
 
 
 ## Diagrama CI/CD do Projeto
