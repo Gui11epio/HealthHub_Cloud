@@ -115,9 +115,10 @@ Obtém usuários paginados
 
 🔵 1. Testar USUÁRIO no Postman
 
-- 📍 1.1 – Criar usuário
+
+### 📍 1.1 – Criar usuário
   
-### POST
+- POST
 ````bash
 healthhub-app.azurewebsites.net/api/v1/Usuario
 ````
@@ -132,30 +133,42 @@ healthhub-app.azurewebsites.net/api/v1/Usuario
 🔤 Tipo deve conter:
 Tipo: "ADMIN" ou "FUNCIONARIO"
 
-- 📍 1.2 – Buscar todos usuários
 
-### GET
+### 📍 1.2 – Buscar todos usuários
+
+- GET
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Usuario
 ```
 
-- 📍 1.3 – Buscar usuário por ID
 
-### GET
+### 📍 1.3 – Buscar usuário por ID
+
+- GET
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Usuario/1
 ```
 
-- 📍 1.4 – Buscar usuário por email
 
-### GET
+### 📍 1.4 – Buscar usuário por email
+
+- GET
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Usuario/email/guilherme@gmail.com
 ````
 
-- 📍 1.5 – Atualizar usuário
 
-### PUT
+### 📍 1.5 – Paginação
+
+- GET
+```bash
+healthhub-app.azurewebsites.net/api/v1/Usuario/pagina?pagina=0&tamanho=10
+````
+
+
+### 📍 1.6 – Atualizar usuário
+
+- PUT
 ```bash
 https://healthhub-app.azurewebsites.net/api/v1/Usuario/1
 ```
@@ -168,18 +181,21 @@ https://healthhub-app.azurewebsites.net/api/v1/Usuario/1
 }
 ```
 
-- 📍 1.6 – Deletar usuário
 
-### DELETE
+### 📍 1.7 – Deletar usuário
+
+- DELETE
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Usuario/1
 ```
 
+
 🟢 2. Testar QUESTIONÁRIO no Postman
 
-- 📍 2.1 – Criar questionário
 
-### POST
+### 📍 2.1 – Criar questionário
+
+- POST
 ````bash
 healthhub-app.azurewebsites.net/api/v1/Questionario
 ````
@@ -193,30 +209,34 @@ healthhub-app.azurewebsites.net/api/v1/Questionario
 }
 ```
 
-- 📍 2.2 – Buscar todos
 
-### GET
+### 📍 2.2 – Buscar todos
+
+- GET
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Questionario
 ````
 
-- 📍 2.3 – Buscar por ID
 
-### GET
+### 📍 2.3 – Buscar por ID
+
+- GET
 ```bash
 https://healthhub-app.azurewebsites.net/api/v1/Questionario/1
 ```
 
-- 📍 2.4 – Paginação
 
-GET
+### 📍 2.4 – Paginação
+
+- GET
 ```bash
 healthhub-app.azurewebsites.net/api/v1/Questionario/pagina?pagina=0&tamanho=10
 ````
 
-- 📍 2.5 – Deletar questionário
 
-### DELETE
+### 📍 2.5 – Deletar questionário
+
+- DELETE
 ```bash
 https://healthhub-app.azurewebsites.net/api/v1/Questionario/1
 ```
