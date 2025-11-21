@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # ================================
 # 🚀 DEPLOY HEALTHHUB - AZURE CLI (SQL SERVER)
